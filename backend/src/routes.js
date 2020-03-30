@@ -40,7 +40,10 @@ routes.post('/incidents', celebrate({
         title: Joi.string().required(),
         description: Joi.string().required(),
         value: Joi.number().required(),
-    })   
+    }), 
+    [Segments.HEADERS]: Joi.object({
+        authorization: Joi.string().required(),
+    }).unknown(),   
 }), IncidentController.create);
 
 routes.delete('/incidents/:id', celebrate({
